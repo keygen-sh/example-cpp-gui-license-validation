@@ -1,0 +1,24 @@
+name: test
+on: [push, pull_request]
+jobs:
+  test:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: linux
+            os: ubuntu-latest
+          - name: mac
+            os: macos-latest
+          - name: windows
+            os: windows-latest
+    steps:
+      - name: Checkout this repository
+        uses: actions/checkout@v2
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v2
+      - name: Build
+        run: mkdir build && cd build && cmake -DCMAKE_VERBOSE_MAKEFILE=ON .. && cmake --build .
+        shell: bash

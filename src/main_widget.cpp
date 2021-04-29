@@ -19,7 +19,6 @@ static void _AfterLicenseValidationSuccess(MainWidget *pMainWidget) {
 
   QVBoxLayout *mainLayout = new QVBoxLayout();
   mainLayout->addWidget(new QPushButton("Do some work"));
-  delete pMainWidget->layout();
   pMainWidget->setLayout(mainLayout);
 }
 

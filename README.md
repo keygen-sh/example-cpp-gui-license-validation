@@ -31,19 +31,19 @@ On Windows you will typically want to copy the necessary DLL files to the same f
 
 ```cmake
 if(WIN32)
-  # After every build, copy Qt5 DLLs if needed.
   add_custom_command(
-    TARGET HjsonExample POST_BUILD
+    TARGET example-cpp-gui-license-validation POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
       $<TARGET_FILE:Qt5::Core>
       $<TARGET_FILE:Qt5::Gui>
       $<TARGET_FILE:Qt5::Widgets>
-      $<TARGET_FILE_DIR:HjsonExample>
+      $<TARGET_FILE:Qt5::Network>
+      $<TARGET_FILE_DIR:example-cpp-gui-license-validation>
     COMMAND ${CMAKE_COMMAND} -E make_directory
-      "$<TARGET_FILE_DIR:HjsonExample>/platforms/"
+      "$<TARGET_FILE_DIR:example-cpp-gui-license-validation>/platforms/"
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
       $<TARGET_FILE:Qt5::QWindowsIntegrationPlugin>
-      "$<TARGET_FILE_DIR:HjsonExample>/platforms/"
+      "$<TARGET_FILE_DIR:example-cpp-gui-license-validation>/platforms/"
   )
 endif()
 ```
